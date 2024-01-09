@@ -1,3 +1,4 @@
+#!/bin/bash
 # # Install Jenkins on Ubuntu 20.04.6 LTS
 
 # jenkins installation

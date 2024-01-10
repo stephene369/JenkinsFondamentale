@@ -1,0 +1,111 @@
+# Install Jenkins on Ubuntu 20.04.6 LTS
+
+curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt-get update
+
+sudo apt install -y openjdk-17-jre
+
+sudo apt-get install -y jenkins
+
+sudo systemctl enable jenkins
+
+sudo systemctl start jenkins
+
+sudo systemctl status jenkins
+
+# Browse to http://localhost:8080 (or whichever port you configured for Jenkins when installing it) and wait until the Unlock Jenkins page appears
+
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+# On the Unlock Jenkins page, paste this password into the Administrator password field and click Continue.
+
+Reference: https://www.jenkins.io/doc/book/installing/linux/
+
+---
+
+# Setting up a Build Agent
+# https://learn.acloud.guru/course/e81aa3d0-bd3e-4a49-9bf8-dc4412e74f6c/learn/6f4a166b-2275-4b3e-b10b-789a87f93f52/847d4e30-a80a-4c04-b643-15049b911e45/watch
+
+# In this lesson, we will be setting up a remote build agent using an Ubuntu server on our cloud playground. This is the first step in distributing a build, and once we have the build agent setup completed, we will move forward with creating distributed builds. 
+
+# In the process of setting up the build agent the following commands are used:
+
+# From your agent worker1 node, set up the jenkins user:
+
+ls -l /var/lib
+sudo mkdir /var/lib/jenkins
+
+ls -l /var/lib | grep jenkins
+sudo useradd -d /var/lib/jenkins jenkins
+sudo chown jenkins:jenkins /var/lib/jenkins
+
+# Generating and setting ssh keys
+
+ssh-keygen
+
+sudo mkdir /var/lib/jenkins/.ssh
+cat ~/.ssh/id_rsa.pub
+
+# copy the key content and paste it
+
+sudo vim /var/lib/jenkins/.ssh/authorized_keys
+
+# Installing java
+
+sudo apt-get update
+
+# Make sure the java version on agent worker1 matches the java version installed in your Jenkins server
+
+sudo apt install -y openjdk-17-jre
+
+# Getting the private key for the user
+
+cat ~/.ssh/id_rsa
+
+# Correcting the known hosts issue once we have ssh'd from master to agent
+
+sudo cp ./.ssh/known_hosts /var/lib/jenkins/.ssh
+
+# Go to Jenkins console:
+
+Manage Jenkins > Nodes and Clouds > + New Node
+
+Node name: "worker1"
+Select "Permanent Agent"
+Description: "ubuntu server"
+Number of executors: 2
+Remote root directory: /var/lib/jenkins
+Labels: linux_deb
+Usage: "Use this node as much as possible"
+Launch method: "Launch agents via SSH"
+Host: public IP address of the node
+Credentials: Add > Jenkins
+Kind: "SSH Username with private key"
+Description: "remote ubuntu creds"
+Username: jenkins
+Private Key > Enter directly > Add > paste the key copied previously > Add
+Credentials: select "jenkins (remote ubuntu creds)"
+Host Key Verification Strategy: "Known hosts file Verification Strategy"
+Save
+
+Click "worker1"
+Click "See log for more details"
+
+# From your Jenkins server, SSH to your agent worker1 public IP
+
+ssh cloud_user@<Agent worker1 public IP>
+
+# Once connected to your agent worker 1, exit back to your Jenkins server
+
+exit
+
+# Copy known_hosts to /var/lib/jenkins/.ssh
+
+sudo mkdir -p /var/lib/jenkins/.ssh
+sudo chown jenkins:jenkins /var/lib/jenkins/.ssh
+sudo cp ~/.ssh/known_hosts /var/lib/jenkins/.ssh/
+
+# Check your agent worker1 status

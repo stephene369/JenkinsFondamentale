@@ -11,7 +11,7 @@ sudo systemctl status apache2
 
 # 
 # # Install Java 
-sudo apt install openjdk-18-jdk -y
+sudo apt install openjdk-11-jdk -y
 java --version
 curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key | sudo tee \
   /usr/share/keyrings/jenkins-keyring.asc > /dev/null

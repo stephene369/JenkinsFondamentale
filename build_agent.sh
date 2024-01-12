@@ -11,7 +11,6 @@ sudo mkdir /var/lib/jenkins/.ssh
 ssh-keygen
 
 ls -l /var/lib/ | grep jenkins
-cat ~/.ssh/id_rsa.pub
 
 sudo cat ~/.ssh/id_rsa.pub | sudo tee -a /var/lib/jenkins/.ssh/authorized_keys > /dev/null
 cat /var/lib/jenkins/.ssh/authorized_keys

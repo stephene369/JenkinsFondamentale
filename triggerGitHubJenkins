@@ -1,0 +1,6 @@
+git clone git-url
+cd helloworld-java-maven/
+vi readme.txt
+git add --all
+git commit -m"adding"
+git push origin master

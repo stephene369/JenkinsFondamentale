@@ -4,4 +4,4 @@ NUMBER=$(($NUMBERONE + $NUMBERTWO))
 echo "$NUMBER"
 
 
-echo "To you all: \nYou will see how cloud compuiting will make me rich."
+echo "To you all: You will see how cloud compuiting will make me rich."

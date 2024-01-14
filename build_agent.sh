@@ -5,7 +5,8 @@
 ls -l /var/lib
 sudo mkdir /var/lib/jenkins
 sudo useradd -d /var/lib/jenkins jenkins
-sudo chown jenkins:jenkins /var/lib/jenkins
+sudo chown -R jenkins:jenkins /var/lib/jenkins
+
 
 ssh-keygen
 sudo mkdir /var/lib/jenkins/.ssh

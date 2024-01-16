@@ -26,8 +26,9 @@ sudo apt install -y openjdk-17-jre
 cat ~/.ssh/id_rsa
 
 exit 
-
-
+#### Git permission to the slave 
+sudo vim /etc/sudoers
+add : jenkins ALL=(ALL) NOPASSWDL: ALL
 
 
 

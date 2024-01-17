@@ -34,3 +34,10 @@ echo -e "${G}The Amindmin Password is : "
 sudo cat /var/lib/jenkins/secrets/initialAdminPassword
 
 sudo systemctl status jenkins
+
+
+### 
+
+git config --global user.name "stephene369"
+git config --global user.email stephenew36@gmail.com
+

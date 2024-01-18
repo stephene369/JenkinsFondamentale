@@ -15,3 +15,10 @@ sudo df -h
 ##Check for Zombie Processes:
 sudo ps aux | grep 'Z'
 
+
+### Paste the following code below at the very bottom of the /etc/fstab file. The code must look exactly as it does in the example, or it will break!
+
+nano -w /etc/fstab
+#Temporary folder TMPFS
+tmpfs /tmp tmpfs rw,nodev,nosuid,size=5G 0 0
+

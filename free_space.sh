@@ -26,6 +26,18 @@ tmpfs /tmp tmpfs rw,nodev,nosuid,size=5G 0 0
 
 ### Free swap 
 
+sudo free|grep -i Swap
+sudo dd if=/dev/zero of=swapfile bs=1M count=1K
+sudo mkswap swapfile
+sudo chown root:root swapfile
+sudo chmod 600 swapfile
+sudo swapon swapfile
+sudo free|grep -i Swap
+sudo dd if=/dev/zero of=swapfile bs=1M count=1K
+sudo mkswap swapfile
+sudo chown root:root swapfile
+sudo chmod 600 swapfile
+sudo swapon swapfile
 sudo dd if=/dev/zero of=swapfile bs=1M count=1K
 sudo mkswap swapfile
 sudo chown root:root swapfile

@@ -23,6 +23,7 @@ cat ~/.ssh/id_rsa
 sudo apt-get update
 # Make sure the java version on agent worker1 matches the java version installed in your Jenkins server
 sudo apt install -y openjdk-17-jre
+### java-17-amazon-corretto-headless
 
 cat ~/.ssh/id_rsa
 

@@ -1,0 +1,28 @@
+[cloud_user@agent ]$ sudo mkdir /var/lib/jenkins
+Add the user, assigning the home directory:
+
+[cloud_user@agent ]$ sudo useradd -d /var/lib/jenkins jenkins
+Make the user the owner of their home directory:
+
+[cloud_user@agent ]$ sudo chown -R jenkins:jenkins /var/lib/jenkins
+Create an .ssh directory for the jenkins user:
+
+[cloud_user@agent ]$ sudo mkdir /var/lib/jenkins/.ssh
+Run ssh-keygen. Hit Enter to accept defaults until it completes.
+
+Copy the contents of ~/.ssh/id_rsa.pub to the file /var/lib/jenkins/.ssh/authorized_keys
+
+[cloud_user@agent ]$ cat ~/.ssh/id_rsa.pub # Copy the output
+
+[cloud_user@agent ]$ sudo vim /var/lib/jenkins/.ssh/authorized_keys # Paste the output of cat and save
+We need the contents of id_rsa, as this is the private key that we will paste into Jenkins:
+
+[cloud_user@agent ]$ cat ~/.ssh/id_rsa
+Copy and save that command's output so we can use it later. After that, use exit to close out of the worker agent session to go back to the Jenkins controller session.
+
+On the Jenkins controller, create an .ssh directory on the controller in the jenkins directory:
+
+[cloud_user@jenkins ]$ sudo mkdir /var/lib/jenkins/.ssh
+Copy the known_hosts entry over from the .ssh directory in /home/cloud_user to the jenkins user's .ssh directory:
+
+[cloud_user@jenkins ]$ sudo cp ~/.ssh/known_hosts /var/lib/jenkins/.ssh

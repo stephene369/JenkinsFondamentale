@@ -108,4 +108,7 @@ sudo mkdir -p /var/lib/jenkins/.ssh
 sudo chown jenkins:jenkins /var/lib/jenkins/.ssh
 sudo cp ~/.ssh/known_hosts /var/lib/jenkins/.ssh/
 
+sudo chmod 700 /var/lib/jenkins/.ssh
+sudo chmod 600 /var/lib/jenkins/.ssh/known_hosts
+
 # Check your agent worker1 status

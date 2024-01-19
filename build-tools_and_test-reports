@@ -1,0 +1,8 @@
+### Go on the ant tools that you created
+/var/lib/jenkins/tools/hudson.tasks.Ant_AntInstallation/antdefault
+
+## install download junit and put in correct directory
+https://repo1.maven.org/maven2/junit/junit/4.13.2/junit-4.13.2.jar
+cp ~/junit-4.13.2.jar ./lib
+
+

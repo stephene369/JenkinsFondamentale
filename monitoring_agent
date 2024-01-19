@@ -1,2 +1,5 @@
 Install the plugins mmonitoring and go on 
 http://<host>:<port>/monitoring
+
+To go on nodes information: 
+http://<host>:<port>/monitoring/nodes

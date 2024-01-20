@@ -19,9 +19,15 @@ curl -X POST -u stephene:11d8eaa2c7eb796103f42e3ea34a3b982e \
 #### Jenkins command line 
 wget http://13.38.129.153:8080/jnlpJars/jenkins-cli.jar
 
-java -jar jenkins-cli.jar auth \
+#  
+java -jar jenkins-cli.jar -auth \
   stephene:11d8eaa2c7eb796103f42e3ea34a3b982e \
   -s http://13.38.129.153:8080 \
   list-jobs 
 
-  
+# 
+java -jar jenkins-cli.jar -auth \
+  stephene:11d8eaa2c7eb796103f42e3ea34a3b982e \
+  -s http://13.38.129.153:8080 \
+  build APIJob -s -v
+

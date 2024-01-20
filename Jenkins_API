@@ -1,0 +1,27 @@
+## buil a job from using API
+curl -X POST -u stephene:11d8eaa2c7eb796103f42e3ea34a3b982e http://13.38.129.153:8080/job/APIJob/build
+
+## get config
+curl -u stephene:11d8eaa2c7eb796103f42e3ea34a3b982e http://13.38.129.153:8080/job/APIJob/config.xml
+
+## To update configure 
+curl -X POST -u stephene:11d8eaa2c7eb796103f42e3ea34a3b982e   \
+  http://13.38.129.153:8080/job/APIJob/config.xml \
+  -d "@apiconfig.xml"
+
+
+curl -X POST -u stephene:11d8eaa2c7eb796103f42e3ea34a3b982e \
+  --data-binary @apiconfig.xml \
+  -H "Content-Type:text/xml" \
+  http://13.38.129.153:8080/job/APIJob/config.xml
+
+
+#### Jenkins command line 
+wget http://13.38.129.153:8080/jnlpJars/jenkins-cli.jar
+
+java -jar jenkins-cli.jar auth \
+  stephene:11d8eaa2c7eb796103f42e3ea34a3b982e \
+  -s http://13.38.129.153:8080 \
+  list-jobs 
+
+  

@@ -16,21 +16,16 @@ sudo df -h
 sudo ps aux | grep 'Z'
 
 
-## Free temp
-### Paste the following code below at the very bottom of the /etc/fstab file. The code must look exactly as it does in the example, or it will break!
 
-nano -w /etc/fstab
-#Temporary folder TMPFS
-tmpfs /tmp tmpfs rw,nodev,nosuid,size=5G 0 0
+################## FREE SWAP ####################3333333
+sudo fallocate -l 2G /swapfile ## or sudo dd if=/dev/zero of=/swapfile bs=1M count=2048
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab
 
+################ FREE Temps ###############################
+sudo mount -t tmpfs -o size=1G tmpfs /mnt/tmpfs
+dd if=/dev/zero of=~/tempfile bs=1M count=1024
 
-### Free swap 
-
-sudo free|grep -i Swap
-sudo dd if=/dev/zero of=swapfile bs=1M count=1K
-sudo mkswap swapfile
-sudo chown root:root swapfile
-sudo chmod 600 swapfile
-sudo swapon swapfile
-sudo free|grep -i Swap
 

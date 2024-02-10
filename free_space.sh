@@ -16,6 +16,8 @@ sudo df -h
 sudo ps aux | grep 'Z'
 
 
+##########################DO EVERYTHING AS ROOT : ################333
+sudo su
 
 ################## FREE SWAP ####################3333333
 sudo fallocate -l 2G /swapfile ## or sudo dd if=/dev/zero of=/swapfile bs=1M count=2048
@@ -25,7 +27,8 @@ sudo swapon /swapfile
 echo '/swapfile swap swap defaults 0 0' | sudo tee -a /etc/fstab
 
 ################ FREE Temps ###############################
-sudo mount -t tmpfs -o size=1G tmpfs /mnt/tmpfs
-dd if=/dev/zero of=~/tempfile bs=1M count=1024
+df -h /tmp
+sudo mount -o remount,size=2G /tmp/
+df -h /tmp
 
 
